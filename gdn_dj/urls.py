@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+# 导入刚才写的视图函数（关键：把views.py里的get_nav_items导入进来）
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),  # 后台管理页面（默认）
+    # 配置导航栏数据接口的访问路径 ★
+    path('api/nav-items/', views.get_nav_items, name='get_nav_items'),
 ]
